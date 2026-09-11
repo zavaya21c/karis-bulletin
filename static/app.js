@@ -1095,6 +1095,15 @@ async function showColophon() {
     $('#about-copy').textContent = owner ? `© ${owner}` : '';
     $('#about-notice').textContent = about.notice || '';
 
+    // 제작자 문의 메일 — 받는 교회가 문의·수정 요청을 보낼 수 있도록 눈에 띄게 표시합니다.
+    const contact = (about.contact || '').trim();
+    if (contact) {
+      const badge = $('#contact-badge');
+      badge.href = `mailto:${contact}`;
+      $('#contact-email').textContent = contact;
+      badge.hidden = false;
+    }
+
     // 후원 안내는 계좌나 링크가 채워져 있을 때만 보여 줍니다.
     const account = (about.support_account || '').trim();
     const link = (about.support_link || '').trim();

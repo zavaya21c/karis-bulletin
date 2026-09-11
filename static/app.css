@@ -56,6 +56,17 @@ button,select,input,textarea{font:inherit; color:inherit}
 .side-bottom .motto{color:#9aa5bb}
 .side-bottom .privacy{margin-top:7px; color:#6f7c96; font-size:11.5px}
 
+.contact-badge{
+  margin-top:14px; padding:11px 13px; border-radius:11px;
+  background:#d6b676; color:#16223a; text-decoration:none;
+  display:flex; gap:9px; align-items:flex-start;
+  box-shadow:0 6px 18px -10px rgba(214,182,118,.65);
+}
+.contact-badge:hover{background:#e8cf9a}
+.contact-badge-icon{font-size:15px; line-height:1.3; flex:none}
+.contact-badge strong{display:block; font-size:11.5px; font-weight:700; line-height:1.4}
+.contact-badge em{display:block; font-style:normal; font-size:12px; font-weight:700; margin-top:2px; letter-spacing:-.01em}
+
 .support{
   margin-top:14px; padding:12px 13px; border-radius:11px;
   background:rgba(214,182,118,.09); border:1px solid rgba(214,182,118,.22);
