@@ -11,25 +11,30 @@ from reportlab.lib.colors import HexColor
 TAU = math.pi * 2
 
 
-def _cross(c, cx, cy, height, weight, color, serif=True):
-    """A slender Latin cross with optional flared ends."""
-    arm = height * 0.30
-    top = cy + height * 0.52
-    bottom = cy - height * 0.48
-    node = cy + height * 0.16
-    c.setFillColor(color)
+def _open_book(c, cx, cy, size, color):
+    """A slim open book, pages curving outward from a centre spine — the
+    stand-in for a cross across every motif (scripture in place of a crucifix)."""
+    spine_top = cy + size * 0.40
+    spine_bottom = cy - size * 0.40
     c.setStrokeColor(color)
-    c.setLineWidth(0)
-    c.rect(cx - weight / 2, bottom, weight, top - bottom, fill=1, stroke=0)
-    c.rect(cx - arm, node - weight / 2, arm * 2, weight, fill=1, stroke=0)
-    if serif:
-        flare = weight * 0.85
-        for x, y, w, h in ((cx, top, weight * 2.1, weight * 0.42),
-                           (cx, bottom, weight * 2.1, weight * 0.42)):
-            c.rect(x - w / 2, y - h / 2 if y == top else y, w, h, fill=1, stroke=0)
+    for side in (-1, 1):
+        path = c.beginPath()
+        path.moveTo(cx, spine_top)
+        path.curveTo(cx + side * size * 0.88, spine_top - size * 0.05,
+                     cx + side * size * 0.94, spine_bottom + size * 0.14,
+                     cx + side * size * 0.10, spine_bottom)
+        path.lineTo(cx, spine_bottom + size * 0.10)
+        path.close()
+        c.setLineWidth(size * 0.045)
+        c.drawPath(path, fill=0, stroke=1)
+    c.setLineWidth(size * 0.05)
+    c.line(cx, spine_top, cx, spine_bottom + size * 0.08)
+    c.setLineWidth(size * 0.020)
+    for i in range(3):
+        t = 0.28 + i * 0.21
+        y = spine_top - (spine_top - spine_bottom) * t
         for side in (-1, 1):
-            c.rect(cx + side * arm - (flare if side > 0 else 0), node - weight * 1.05,
-                   flare, weight * 2.1, fill=1, stroke=0)
+            c.line(cx + side * size * 0.16, y, cx + side * size * 0.66, y)
 
 
 def _leaf(c, length, width, color):
@@ -44,7 +49,7 @@ def _leaf(c, length, width, color):
 
 
 def leaves(c, cx, cy, r, ink, accent, paper):
-    """A laurel wreath — two mirrored branches of tapering leaves — around a cross."""
+    """A laurel wreath — two mirrored branches of tapering leaves — around an open book."""
     gold = HexColor(accent)
     radius = r * 0.92
     c.saveState()
@@ -78,7 +83,7 @@ def leaves(c, cx, cy, r, ink, accent, paper):
         a = math.radians(72)
         c.circle(cx + side * math.cos(a) * radius, cy + math.sin(a) * radius, r * 0.030,
                  fill=1, stroke=0)
-    _cross(c, cx, cy - r * 0.04, r * 1.02, r * 0.075, gold)
+    _open_book(c, cx, cy - r * 0.04, r * 0.52, gold)
     c.restoreState()
 
 
@@ -113,12 +118,12 @@ def glass(c, cx, cy, r, ink, accent, paper):
     c.setStrokeColor(lead)
     c.setLineWidth(r * 0.02)
     c.circle(cx, cy, r * 0.40, fill=0, stroke=1)
-    _cross(c, cx, cy, r * 0.62, r * 0.055, HexColor(accent), serif=False)
+    _open_book(c, cx, cy, r * 0.30, HexColor(accent))
     c.restoreState()
 
 
 def rays(c, cx, cy, r, ink, accent, paper):
-    """Light breaking from behind a cross."""
+    """Light breaking from behind an open book."""
     gold = HexColor(accent)
     c.saveState()
     c.setStrokeColor(gold)
@@ -134,12 +139,12 @@ def rays(c, cx, cy, r, ink, accent, paper):
     c.circle(cx, cy, r * 0.34, fill=0, stroke=1)
     c.setLineWidth(r * 0.008)
     c.circle(cx, cy, r * 0.30, fill=0, stroke=1)
-    _cross(c, cx, cy, r * 0.86, r * 0.07, gold)
+    _open_book(c, cx, cy, r * 0.24, gold)
     c.restoreState()
 
 
 def flowers(c, cx, cy, r, ink, accent, paper):
-    """Two sprays of small blossoms flanking a slim cross."""
+    """Two sprays of small blossoms flanking an open book."""
     bloom = HexColor(accent)
     stemcolor = HexColor(ink)
     c.saveState()
@@ -170,12 +175,13 @@ def flowers(c, cx, cy, r, ink, accent, paper):
             c.setFillAlpha(1)
             c.setFillColor(bloom)
             c.circle(x, y, size * 0.24, fill=1, stroke=0)
-    _cross(c, cx, cy, r * 0.98, r * 0.055, HexColor(accent), serif=False)
+    _open_book(c, cx, cy, r * 0.48, HexColor(accent))
     c.restoreState()
 
 
-def cross(c, cx, cy, r, ink, accent, paper):
-    """A single well-proportioned cross inside a hairline circle."""
+def book(c, cx, cy, r, ink, accent, paper):
+    """An open book at rest inside a hairline circle — scripture in place
+    of a crucifix."""
     gold = HexColor(accent)
     c.saveState()
     c.setStrokeColor(gold)
@@ -183,7 +189,7 @@ def cross(c, cx, cy, r, ink, accent, paper):
     c.circle(cx, cy, r * 0.86, fill=0, stroke=1)
     c.setLineWidth(r * 0.030)
     c.circle(cx, cy, r * 0.80, fill=0, stroke=1)
-    _cross(c, cx, cy, r * 1.02, r * 0.085, gold)
+    _open_book(c, cx, cy, r * 0.62, gold)
     c.setLineWidth(r * 0.012)
     for side in (-1, 1):
         c.line(cx + side * r * 0.96, cy, cx + side * r * 1.45, cy)
@@ -192,7 +198,7 @@ def cross(c, cx, cy, r, ink, accent, paper):
 
 
 def monogram(c, cx, cy, r, ink, accent, paper):
-    """A lozenge frame around a slim cross, with hairline wings."""
+    """A lozenge frame around an open book, with hairline wings."""
     gold = HexColor(accent)
     c.saveState()
     c.setStrokeColor(gold)
@@ -205,7 +211,7 @@ def monogram(c, cx, cy, r, ink, accent, paper):
         path.close()
         c.setLineWidth(r * weight)
         c.drawPath(path, fill=0, stroke=1)
-    _cross(c, cx, cy, r * 0.96, r * 0.062, gold, serif=False)
+    _open_book(c, cx, cy, r * 0.50, gold)
     c.setLineWidth(r * 0.012)
     for side in (-1, 1):
         c.line(cx + side * r * 0.86, cy, cx + side * r * 1.60, cy)
@@ -213,7 +219,7 @@ def monogram(c, cx, cy, r, ink, accent, paper):
 
 
 def deco(c, cx, cy, r, ink, accent, paper):
-    """Art-deco fan: stepped arcs and fine rays behind a cross."""
+    """Art-deco fan: stepped arcs and fine rays behind an open book."""
     gold = HexColor(accent)
     c.saveState()
     c.setStrokeColor(gold)
@@ -231,12 +237,12 @@ def deco(c, cx, cy, r, ink, accent, paper):
     c.line(cx - r * 1.02, cy, cx + r * 1.02, cy)
     c.setLineWidth(r * 0.010)
     c.line(cx - r * 0.92, cy - r * 0.09, cx + r * 0.92, cy - r * 0.09)
-    _cross(c, cx, cy + r * 0.26, r * 0.90, r * 0.070, gold)
+    _open_book(c, cx, cy + r * 0.26, r * 0.46, gold)
     c.restoreState()
 
 
 def arch(c, cx, cy, r, ink, accent, paper):
-    """A chapel window: rounded arch, mullion and a cross."""
+    """A chapel window: rounded arch, mullion and an open book on the sill."""
     stone = HexColor(accent)
     c.saveState()
     width = r * 1.12
@@ -259,12 +265,12 @@ def arch(c, cx, cy, r, ink, accent, paper):
     c.line(cx, base + r * 0.10, cx, top + width * 0.72)
     c.line(cx - width * 0.62, base + r * 0.10, cx - width * 0.62, top - r * 0.10)
     c.line(cx + width * 0.62, base + r * 0.10, cx + width * 0.62, top - r * 0.10)
-    _cross(c, cx, cy + r * 0.05, r * 1.10, r * 0.062, HexColor(ink), serif=False)
+    _open_book(c, cx, cy + r * 0.05, r * 0.56, HexColor(ink))
     c.restoreState()
 
 
 MOTIFS = {'leaves': leaves, 'glass': glass, 'rays': rays, 'flowers': flowers,
-          'cross': cross, 'monogram': monogram, 'deco': deco, 'arch': arch}
+          'book': book, 'monogram': monogram, 'deco': deco, 'arch': arch}
 
 
 def draw(c, motif, cx, cy, r, ink, accent, paper):

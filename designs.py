@@ -37,7 +37,7 @@ THEMES = dict([
     # --- 밝은 정통 ------------------------------------------------------
     _t('classic', '클래식 명조', '아이보리 바탕에 금선 · 가장 무난하고 단정합니다', '정통',
        paper='#FFFFFF', ink='#1E2A38', accent='#A6802F', muted='#6C7684', soft='#F4F1E9',
-       cover='light', cover_paper='#FCFAF4', motif='cross', frame=True),
+       cover='light', cover_paper='#FCFAF4', motif='book', frame=True),
     _t('linen', '리넨 그레이스', '리넨빛 종이와 차분한 회갈색 · 조용한 품격', '정통',
        paper='#FFFFFF', ink='#33352F', accent='#8B8274', muted='#787468', soft='#F4F2EC',
        cover='light', cover_paper='#F5F3ED', motif='monogram', frame=True),
@@ -46,7 +46,7 @@ THEMES = dict([
        cover='light', cover_paper='#FFFDF7', motif='deco', frame=True),
     _t('warm', '따뜻한 소식지', '연한 살구빛 바탕 · 가정 같은 분위기', '정통',
        paper='#FFFFFF', ink='#57402F', accent='#B0774C', muted='#836A55', soft='#F7EFE4',
-       cover='light', cover_paper='#FBF4EA', motif='cross', frame=False),
+       cover='light', cover_paper='#FBF4EA', motif='book', frame=False),
     _t('platinum', '플래티넘 모노그램', '은회색 모노그램과 넓은 여백 · 차분한 격식', '정통',
        paper='#FFFFFF', ink='#24262B', accent='#8B8F99', muted='#6E7078', soft='#F4F4F6',
        cover='light', cover_paper='#FBFBFC', motif='monogram', frame=True),
@@ -59,7 +59,7 @@ THEMES = dict([
     _t('reverence', '리버런스 네이비', '아이보리 표지에 네이비 말씀 배너 · 예식 같은 격식', '정통',
        paper='#FFFFFF', ink='#1B2A4A', accent='#C5A059', muted='#4A4E54', soft='#F5F1EB',
        cover='motto', cover_paper='#FAF8F5', cover_ink='#1B2A4A', cover_accent='#C5A059',
-       motif='cross', head='myeongjo', frame=False),
+       motif='book', head='myeongjo', frame=False),
 
     # --- 부드러운 색 ----------------------------------------------------
     _t('rose', '로즈 블로썸', '연분홍 바탕과 꽃 장식', '부드러운 색',
