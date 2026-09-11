@@ -1,0 +1,13 @@
+{
+  "version": "2.0.0",
+  "edition": "community",
+  "project": "카리스 주보제작",
+  "author": "김문종",
+  "year": "2026",
+  "contact": "",
+  "notice": "무료로 쓰고 다른 교회에 그대로 전달할 수 있습니다. 판매하거나 이름을 바꾸어 배포할 수 없습니다.",
+  "support_notice": "이 프로그램은 무료입니다. 쓰시고 도움이 되었다면 다음 버전을 만드는 데 보태 주세요.",
+  "support_account": "토스뱅크 1000-4401-6486 김문종",
+  "support_link": "",
+  "suite": "카리스"
+}

@@ -1,0 +1,40 @@
+*{box-sizing:border-box}
+body{
+  margin:0; background:#eceadf; color:#1a2536;
+  font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',system-ui,sans-serif;
+}
+header{
+  max-width:1120px; margin:26px auto; padding:0 20px; display:flex; gap:18px;
+  justify-content:space-between; align-items:center; flex-wrap:wrap;
+}
+header>div{flex:1; min-width:280px}
+h1{font-size:23px; margin:0 0 6px; letter-spacing:-.01em}
+p{font-size:12.5px; margin:0 0 4px; color:#5a6473; line-height:1.6}
+#status{color:#8a6a20; font-weight:600}
+a{color:#1a2536; font-size:13px; padding:11px 15px; border:1px solid #d6cfbe; border-radius:10px;
+  background:#fff; text-decoration:none; white-space:nowrap}
+a:hover{border-color:#b9ae95}
+button{
+  padding:12px 20px; background:#16223a; color:#fff; border:1px solid #16223a;
+  border-radius:10px; font:inherit; font-size:13.5px; font-weight:500; cursor:pointer; white-space:nowrap;
+}
+button:disabled{opacity:.45; cursor:default}
+.sheet{max-width:1120px; margin:24px auto; background:#fff; box-shadow:0 4px 22px rgba(20,26,40,.14)}
+.sheet canvas{width:100%; height:auto; display:block}
+
+@page{size:auto; margin:0}
+@page a4sheet{size:A4 landscape; margin:0}
+@page a3sheet{size:A3 landscape; margin:0}
+
+@media print{
+  html,body,main{margin:0; padding:0; background:#fff}
+  header{display:none}
+  .sheet{
+    width:100%; height:auto; margin:0; max-width:none; box-shadow:none;
+    break-after:page; break-inside:avoid; page-break-inside:avoid; overflow:hidden;
+  }
+  .sheet:last-child{break-after:auto}
+  .sheet canvas{width:100%; height:auto; object-fit:contain}
+  .sheet.a4{width:297mm; height:210mm; page:a4sheet}
+  .sheet.a3{width:420mm; height:297mm; page:a3sheet}
+}

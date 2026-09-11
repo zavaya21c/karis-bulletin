@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>카리스 주보제작 · 교회의 한 주를 담다</title>
+<link rel="stylesheet" href="/static/app.css">
+</head>
+<body>
+
+<aside class="sidebar">
+  <a class="brand" href="/">
+    <span class="mark">✝</span>
+    <span>카리스 주보제작<small>KARIS BULLETIN 2.0</small></span>
+  </a>
+
+  <div class="edition">
+    <span>이번 주 발행본</span>
+    <strong id="edition">불러오는 중</strong>
+    <em id="edition-design"></em>
+  </div>
+
+  <nav id="navigation">
+    <button data-section="basic" class="active"><b>01</b> 기본 정보</button>
+    <button data-section="worship"><b>02</b> 예배 순서</button>
+    <button data-section="article"><b>03</b> 말씀 · 묵상</button>
+    <button data-section="news"><b>04</b> 소식 · 기도</button>
+    <button data-section="design"><b>05</b> 디자인 · 용지</button>
+    <button data-section="church"><b>06</b> 교회 기본 설정</button>
+  </nav>
+
+  <div class="side-bottom">
+    <p class="motto">한 번 정한 교회 정보,<br>매주 이어지는 기록.</p>
+    <p class="privacy">모든 자료는 이 컴퓨터 안에만 저장됩니다.</p>
+    <div class="support" id="support" hidden>
+      <p class="support-title">함께 만들어 갑니다</p>
+      <p class="support-text" id="support-notice"></p>
+      <p class="support-account" id="support-account"></p>
+      <a class="support-link" id="support-link" target="_blank" rel="noopener" hidden>후원 안내 보기 ↗</a>
+    </div>
+
+    <div class="colophon">
+      <span class="rule"></span>
+      <p class="mark">✝ 카리스 주보제작 <em id="about-version">2.0</em></p>
+      <p class="copy" id="about-copy">© 2026</p>
+      <p class="terms" id="about-notice"></p>
+    </div>
+  </div>
+</aside>
+
+<main>
+  <header>
+    <div>
+      <p class="eyebrow">MADE FOR YOUR SUNDAY</p>
+      <h1>교회의 한 주를 담다.</h1>
+      <p class="subtitle" id="autosave">편집 내용을 불러오는 중…</p>
+    </div>
+    <div class="header-actions">
+      <button id="show-preview">미리보기 보기 ↓</button>
+      <button id="next-week">다음 주로 복사</button>
+      <button id="save" class="primary">수정본 보관</button>
+    </div>
+  </header>
+
+  <div id="checks" class="notice" hidden></div>
+
+  <div class="workspace">
+    <section class="editor">
+      <div class="editor-heading">
+        <div>
+          <p class="eyebrow" id="section-number">01 / CONTENT</p>
+          <h2 id="section-title">기본 정보</h2>
+          <p class="section-hint" id="section-hint"></p>
+        </div>
+        <span class="chip" id="format-chip">A4 반접지</span>
+      </div>
+
+      <form id="fields" autocomplete="off"></form>
+
+      <section class="archive">
+        <h3>보관 · 복구</h3>
+        <label>보관한 수정본
+          <select id="history"><option value="">수정본 선택</option></select>
+        </label>
+        <div class="file-actions">
+          <button id="restore">선택한 수정본 복원</button>
+          <button id="export-data">편집 파일 저장</button>
+          <label class="import-button">편집 파일 열기<input id="import-data" type="file" accept="application/json,.json"></label>
+          <button id="backup">전체 기록 백업</button>
+        </div>
+        <p class="help">자동 저장은 현재 초안이고, 수정본 보관은 되돌릴 수 있는 이력입니다. 편집 파일(JSON)은 PDF와 별개로 다른 컴퓨터에서 이어서 작업할 때 사용합니다.</p>
+      </section>
+    </section>
+
+    <section class="preview-area">
+      <div class="preview-heading">
+        <div>
+          <p class="eyebrow">LIVE PREVIEW</p>
+          <h2>주보 미리보기</h2>
+        </div>
+        <span id="status" role="status">준비 중</span>
+      </div>
+
+      <div id="error" role="alert" hidden></div>
+
+      <div class="page-picker">
+        <label>보기 방식
+          <select id="preview-mode">
+            <option value="reading">면별로 보기</option>
+            <option value="print">인쇄용 · 종이 한 장</option>
+            <option value="public">홈페이지 공개본</option>
+          </select>
+        </label>
+        <label>면 선택
+          <select id="preview-page"></select>
+        </label>
+        <button id="refresh">다시 만들기</button>
+      </div>
+
+      <label class="checkbox follow"><input id="follow" type="checkbox" checked>왼쪽에서 고른 단계의 면을 따라가기</label>
+
+      <div id="filmstrip" class="filmstrip" aria-label="주보 전체 면"></div>
+
+      <div id="preview" role="img" aria-label="주보 PDF 미리보기"></div>
+      <p class="help" id="fold-guide"></p>
+
+      <div class="output-options">
+        <button id="download-print" class="primary">인쇄용 PDF 저장</button>
+        <button id="download-reading">읽기용 PDF 저장</button>
+        <button id="download-public">공개 PDF 저장</button>
+        <button id="share-image">현재 면 PNG</button>
+        <button id="print">인쇄 화면 열기 ↗</button>
+      </div>
+
+      <div class="save-box">
+        <p id="save-result" role="status">PDF는 문서 → 카리스 주보제작 → 교회 이름 → 연도 폴더에 저장됩니다.</p>
+        <button id="open-folder">저장 폴더 열기</button>
+      </div>
+
+      <button id="bundle" class="bundle">PDF 3종 + 편집 파일 묶음 저장</button>
+      <p class="help">공개본에서는 기도제목과 연락처를 뺄 수 있습니다. 공유하기 전에 공개본 미리보기를 꼭 확인하세요.</p>
+    </section>
+  </div>
+
+  <footer>작은 교회의 매주를 위한 제작실 <span>자동 저장 · 수정 이력 · 실제 크기 PDF</span></footer>
+</main>
+
+<div id="toast" role="status" hidden></div>
+<script src="/static/app.js" type="module"></script>
+</body>
+</html>
