@@ -645,6 +645,94 @@ class Book:
             s.para(contact, self.body, self.ts(7.4), self.ts(7.4) * 1.5, muted, 0, shrink_to=self.ts(6.4))
         s.draw()
 
+    def cover_motto(self):
+        """Ivory ground, centered identity block, and a deep navy banner card
+        that carries the week's message title and scripture citation — the
+        card is the signature move, standing in for a printed 'motto' plate."""
+        d = self.d
+        theme = self.theme
+        paper, ink, accent = self.cover_palette()
+        self.paint(paper)
+        c = self.c
+        muted = tint(theme.cover_ink, 0.42, theme.cover_paper)
+        stamp, weekday = korean_date(d['date'])
+        meta = '  ·  '.join(x for x in (stamp, weekday, issue_label(d['issue'])) if x)
+
+        top_y = self.h - 13.5 * mm
+        self.eyebrow(d['denomination'] or 'SUNDAY WORSHIP', top_y, accent, align='left')
+        if meta:
+            self.eyebrow(meta, top_y, muted, align='right')
+        rule_y = top_y - 4.6 * mm
+        c.setStrokeColor(tint(theme.cover_accent, 0.55, theme.cover_paper))
+        c.setLineWidth(0.5)
+        c.line(self.mx, rule_y, self.w - self.mx, rule_y)
+
+        s = self.stack(rule_y - 7 * mm, 20 * mm)
+        art = self.logo_block()
+        if art:
+            s.block(art[0], art[1])
+            s.gap(4 * mm)
+        elif theme.motif:
+            radius = min(self.inner * 0.20, self.h * 0.075)
+
+            def draw_motif(cv, x, y, box, _r=radius):
+                ornaments.draw(cv, theme.motif, x + box / 2, y - _r, _r,
+                               theme.cover_ink, theme.cover_accent, theme.cover_paper)
+            s.block(draw_motif, radius * 2)
+            s.gap(5 * mm)
+        s.gap(1 * mm, flex=0.5)
+        s.line(d['church'], self.head_black, self.ds(26), ink, 'center')
+        s.gap(2.6 * mm)
+        s.line(d['tagline'], self.head_bold, self.ts(9.4), accent, 'center', tracking=1.6)
+        s.gap(6 * mm, flex=0.8, cap=16 * mm)
+
+        title, citation = d['sermon'].strip(), d['scripture'].strip()
+        if title or citation:
+            pad_x, pad_y = 8 * mm, 7 * mm
+            tsize = self.ds(15)
+            tp = theight = None
+            if title:
+                tp, theight = paragraph(title, self.inner - 2 * pad_x, self.head_bold, tsize,
+                                        tsize * 1.36, HexColor('#FFFFFF'), 1)
+                while theight > 26 * mm and tsize > self.ds(10.5):
+                    tsize = round(tsize - 0.4, 2)
+                    tp, theight = paragraph(title, self.inner - 2 * pad_x, self.head_bold, tsize,
+                                            tsize * 1.36, HexColor('#FFFFFF'), 1)
+            else:
+                theight = 0
+            label_h = self.ts(8) * 1.3
+            cite_h = (self.ts(9) * 1.3) if citation else 0
+            inner_h = label_h + 2.4 * mm + theight + (3 * mm + cite_h if citation else 0)
+            box_h = inner_h + 2 * pad_y
+
+            def draw_banner(cv, x, top, box, _title=tp, _theight=theight, _cite=citation,
+                            _pad_x=pad_x, _pad_y=pad_y, _box_h=box_h, _label_h=label_h):
+                navy = theme.color('cover_ink')
+                gold = theme.color('cover_accent')
+                cv.setFillColor(navy)
+                cv.roundRect(x, top - _box_h, box, _box_h, 2.4 * mm, stroke=0, fill=1)
+                cy = top - _pad_y
+                tracked(cv, '이 주의 말씀', x, cy - _label_h * 0.72, self.body_bold, self.ts(8),
+                       1.4, gold, 'center', box)
+                cy -= _label_h + 2.4 * mm
+                if _title:
+                    _title.drawOn(cv, x + _pad_x, cy - _theight)
+                    cy -= _theight
+                if _cite:
+                    cy -= 3 * mm
+                    tracked(cv, _cite, x, cy - self.ts(9) * 0.75, self.body, self.ts(9), 0.3,
+                           gold, 'center', box)
+            s.block(draw_banner, box_h)
+            s.gap(6 * mm, flex=0.8)
+
+        if d['service_time']:
+            s.line(d['service_time'], self.body, self.ts(8.4), muted, 'center')
+            s.gap(2.4 * mm)
+        contact = '  ·  '.join(x for x in (self.address, self.email) if x)
+        if contact:
+            s.para(contact, self.body, self.ts(7.4), self.ts(7.4) * 1.5, muted, 1, shrink_to=self.ts(6.4))
+        s.draw()
+
     def cover_image(self):
         d = self.d
         c = self.c

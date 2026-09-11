@@ -47,36 +47,19 @@ THEMES = dict([
     _t('warm', '따뜻한 소식지', '연한 살구빛 바탕 · 가정 같은 분위기', '정통',
        paper='#FFFFFF', ink='#57402F', accent='#B0774C', muted='#836A55', soft='#F7EFE4',
        cover='light', cover_paper='#FBF4EA', motif='cross', frame=False),
-
-    # --- 깊은 색 표지 ---------------------------------------------------
-    _t('royal', '로열 사파이어', '짙은 남색과 금빛 잎 · 가장 격식 있는 표지', '깊은 색',
-       paper='#FFFFFF', ink='#1B2C48', accent='#B08B45', muted='#6A7385', soft='#F1F3F7',
-       cover='frame', cover_paper='#14284A', cover_ink='#F4E7C8', cover_accent='#D6B676',
-       motif='leaves', frame=True),
-    _t('emerald', '에메랄드 가든', '깊은 초록과 금빛 잎사귀', '깊은 색',
-       paper='#FFFFFF', ink='#14382F', accent='#A2803C', muted='#5F7168', soft='#EFF4F0',
-       cover='frame', cover_paper='#0F3B31', cover_ink='#FCF1D8', cover_accent='#D3B071',
-       motif='leaves', frame=True),
-    _t('burgundy', '버건디 크라운', '진한 자주빛과 금빛 잎사귀', '깊은 색',
-       paper='#FFFFFF', ink='#4A2033', accent='#A97C46', muted='#7A6069', soft='#F7F0F1',
-       cover='frame', cover_paper='#55203A', cover_ink='#FCEFD8', cover_accent='#DFB87C',
-       motif='leaves', frame=True),
-    _t('amethyst', '자수정 스테인드글라스', '보랏빛 유리창 무늬', '깊은 색',
-       paper='#FFFFFF', ink='#2F2545', accent='#9A7BB0', muted='#6E6880', soft='#F4F1F8',
-       cover='frame', cover_paper='#2E1F45', cover_ink='#F6EBD4', cover_accent='#CBAE84',
-       motif='glass', frame=True),
-    _t('ocean', '오션 스테인드글라스', '푸른 유리창과 물빛', '깊은 색',
-       paper='#FFFFFF', ink='#123A54', accent='#3F8C94', muted='#5C7484', soft='#EDF5F6',
-       cover='frame', cover_paper='#103752', cover_ink='#E9F8F5', cover_accent='#9FD3CE',
-       motif='glass', frame=True),
-    _t('midnight', '미드나이트 글로리', '밤하늘빛 바탕에 퍼지는 빛살', '깊은 색',
-       paper='#FFFFFF', ink='#1B2745', accent='#5C6DA8', muted='#65708C', soft='#F0F2F8',
-       cover='frame', cover_paper='#142140', cover_ink='#EFF1FF', cover_accent='#C3CBEA',
-       motif='rays', frame=True),
-    _t('sunrise', '선라이즈 글로리', '해 뜨는 빛살과 따뜻한 주홍', '깊은 색',
-       paper='#FFFFFF', ink='#7A3529', accent='#C4783C', muted='#8A6152', soft='#FBF0E4',
-       cover='frame', cover_paper='#8A3C30', cover_ink='#FFF1DA', cover_accent='#F0BE7C',
-       motif='rays', frame=True),
+    _t('platinum', '플래티넘 모노그램', '은회색 모노그램과 넓은 여백 · 차분한 격식', '정통',
+       paper='#FFFFFF', ink='#24262B', accent='#8B8F99', muted='#6E7078', soft='#F4F4F6',
+       cover='light', cover_paper='#FBFBFC', motif='monogram', frame=True),
+    _t('champagne', '샴페인 프레이즈', '샴페인 골드와 아르데코 문양 · 화려하지 않은 고급스러움', '정통',
+       paper='#FFFFFF', ink='#2B2419', accent='#C9A66B', muted='#7A715F', soft='#F8F3E7',
+       cover='light', cover_paper='#FCF9F1', motif='deco', frame=True),
+    _t('silverleaf', '실버 리프', '차가운 은빛 잎사귀와 청회색', '정통',
+       paper='#FFFFFF', ink='#25313D', accent='#7C93A6', muted='#68737D', soft='#EEF2F5',
+       cover='light', cover_paper='#F7FAFC', motif='leaves', frame=True),
+    _t('reverence', '리버런스 네이비', '아이보리 표지에 네이비 말씀 배너 · 예식 같은 격식', '정통',
+       paper='#FFFFFF', ink='#1B2A4A', accent='#C5A059', muted='#4A4E54', soft='#F5F1EB',
+       cover='motto', cover_paper='#FAF8F5', cover_ink='#1B2A4A', cover_accent='#C5A059',
+       motif='cross', head='myeongjo', frame=False),
 
     # --- 부드러운 색 ----------------------------------------------------
     _t('rose', '로즈 블로썸', '연분홍 바탕과 꽃 장식', '부드러운 색',
@@ -88,6 +71,15 @@ THEMES = dict([
     _t('sanctuary', '세이지 채플', '세이지 그린과 아치 · 차분한 예배당', '부드러운 색',
        paper='#FFFFFF', ink='#26443C', accent='#7E9179', muted='#63776D', soft='#F1F4EE',
        cover='arch', cover_paper='#F4F6F1', motif='arch', frame=False),
+    _t('laurel', '가든 로렐', '월계수 잎과 세이지 골드 · 은은한 품격', '부드러운 색',
+       paper='#FFFFFF', ink='#243329', accent='#9C8B4E', muted='#6D7566', soft='#F3F4EC',
+       cover='light', cover_paper='#F5F6EE', motif='leaves', frame=True),
+    _t('dawn', '로즈골드 스테인드', '로즈골드빛 유리창 무늬 · 부드럽고 화사한 표지', '부드러운 색',
+       paper='#FFFFFF', ink='#3B2A34', accent='#C08A72', muted='#7C6B72', soft='#F8F0EE',
+       cover='light', cover_paper='#FBF3F1', motif='glass', frame=True),
+    _t('chapel', '샹들리에 아치', '아이보리 아치와 따뜻한 금빛 · 예식 같은 분위기', '부드러운 색',
+       paper='#FFFFFF', ink='#3A2E22', accent='#B7935A', muted='#7C7062', soft='#F6F1E6',
+       cover='arch', cover_paper='#FAF6EC', motif='arch', frame=False),
 
     # --- 현대적 --------------------------------------------------------
     _t('editorial', '에디토리얼 크림', '큰 날짜 숫자와 테라코타 · 잡지 같은 표지', '현대적',
@@ -105,6 +97,14 @@ THEMES = dict([
        paper='#FFFFFF', ink='#1A1A1A', accent='#767676', muted='#6B6B6B', soft='#F2F2F2',
        cover='rule', cover_paper='#FFFFFF', motif=None, head='barun', body_hint='barun',
        frame=False),
+    _t('graphite', '그래파이트 라인', '그래파이트 색면과 코퍼 포인트 · 세련된 인상', '현대적',
+       paper='#FFFFFF', ink='#24262B', accent='#B0714A', muted='#63666D', soft='#F1F1F1',
+       cover='band', cover_paper='#FFFFFF', motif=None, head='square', body_hint='square',
+       frame=False, inner_band=True),
+    _t('inkline', '잉크라인', '먹빛 세리프와 가는 금선 · 절제된 품격', '현대적',
+       paper='#FFFFFF', ink='#1F2421', accent='#9C7B3E', muted='#6B6E68', soft='#F2F1EC',
+       cover='rule', cover_paper='#FFFFFF', motif=None, head='myeongjo', body_hint='barun',
+       frame=False),
 
     # --- 내 디자인 -----------------------------------------------------
     _t('custom', '내 디자인', '직접 만든 표지 이미지를 올려 사용합니다', '내 디자인',
@@ -112,11 +112,20 @@ THEMES = dict([
        cover='image', motif=None, frame=False),
 ])
 
-GROUP_ORDER = ['정통', '깊은 색', '부드러운 색', '현대적', '내 디자인']
+GROUP_ORDER = ['정통', '부드러운 색', '현대적', '내 디자인']
 
 # Designs retired in earlier versions map onto their closest replacement so that
 # bulletins saved with an older release keep opening.
-LEGACY = {'original': 'classic'}
+LEGACY = {
+    'original': 'classic',
+    'royal': 'platinum',
+    'emerald': 'laurel',
+    'burgundy': 'dawn',
+    'amethyst': 'dawn',
+    'ocean': 'silverleaf',
+    'midnight': 'silverleaf',
+    'sunrise': 'champagne',
+}
 
 
 def resolve(key):
