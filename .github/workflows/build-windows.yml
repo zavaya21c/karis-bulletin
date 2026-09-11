@@ -22,7 +22,7 @@ jobs:
         run: python build-native.py
       
       - name: Upload artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: KarisBulletin-2.0-${{ runner.os }}
           path: KarisBulletin-2.0-*.zip
